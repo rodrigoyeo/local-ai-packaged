@@ -1,0 +1,41 @@
+# Docker Compose Override - Production Lite Configuration
+# Deshabilita servicios no esenciales para reducir consumo de recursos
+
+services:
+  # Langfuse group - Observabilidad de LLMs (no esencial)
+  langfuse-worker:
+    profiles: ["disabled"]
+  
+  langfuse-web:
+    profiles: ["disabled"]
+    
+  clickhouse:
+    profiles: ["disabled"]
+    
+  minio:
+    profiles: ["disabled"]
+  
+  # Neo4j - Knowledge graphs (no esencial)
+  neo4j:
+    profiles: ["disabled"]
+
+  # Opcional: Limitar recursos de servicios que mantenemos
+  postgres:
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1G
+        reservations:
+          cpus: '0.5'
+          memory: 512M
+
+  redis:
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
