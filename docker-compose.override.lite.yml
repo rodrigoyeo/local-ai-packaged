@@ -43,7 +43,7 @@ services:
   # N8N optimizations
   n8n:
     environment:
-      - N8N_RUNNERS_ENABLED=true
+      - N8N_RUNNERS_ENABLED=false
       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
     deploy:
       resources:
