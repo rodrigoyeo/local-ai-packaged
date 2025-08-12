@@ -30,12 +30,26 @@ services:
           cpus: '0.5'
           memory: 512M
 
-  redis:
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 256M
-        reservations:
-          cpus: '0.25'
-          memory: 128M
+   redis:
+     deploy:
+       resources:
+         limits:
+           cpus: '0.5'
+           memory: 256M
+         reservations:
+           cpus: '0.25'
+           memory: 128M
+
+   # N8N optimizations
+   n8n:
+     environment:
+       - N8N_RUNNERS_ENABLED=true
+       - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+     deploy:
+       resources:
+         limits:
+           cpus: '2.0'
+           memory: 512M
+         reservations:
+           cpus: '0.5'
+           memory: 256M
